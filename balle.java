@@ -105,6 +105,7 @@ public void keyReleased(KeyEvent e){
     if (j==32 && b==false){
 		this.setVisible(true);
 		tempsSpace=System.currentTimeMillis()-startSpace;
+		alpha=moncanon.alpha-0.5*moncanon.alpha;//erreur systematique
 		repaint();	
 	
 	if(!t1.isRunning()) {
@@ -135,11 +136,11 @@ public void actionPerformed(ActionEvent e){
 	}else if(tempsSpace>=800 && tempsSpace<1000){
 		vo=11;
 	}else if(tempsSpace>=1000 && tempsSpace<1200){
-		vo=13;
+		vo=12;
 	}else if(tempsSpace>=1200 && tempsSpace<1400){
 		vo=13;
 	}else {
-		vo=15;
+		vo=14;
 	}
 	
 	System.out.println("voici le vo:"+vo);
@@ -147,7 +148,7 @@ public void actionPerformed(ActionEvent e){
 		
 	//
 	elapsedTime = (System.currentTimeMillis() - startTime)*0.001;//temps ecoulé en secondes
-	   alpha=moncanon.alpha-0.5*moncanon.alpha;//erreur systematique
+	  
 		x=(vo*Math.cos(Math.toRadians(alpha))*elapsedTime+(l*Math.cos(Math.toRadians(alpha))+0.50))*Math.pow(10,2); //1m=100pixels
 		z=(0.5*g*Math.pow(elapsedTime,2)-vo*(Math.sin(Math.toRadians(alpha)))*elapsedTime+(4.50-L*Math.sin(Math.toRadians(alpha))))*Math.pow(10,2);
 
