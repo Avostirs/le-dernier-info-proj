@@ -17,8 +17,8 @@ public class balle extends JPanel implements ActionListener,KeyListener {
 //mesure du temps pour les equations
 double startTime;
 double elapsedTime = 0;
-double startSpace;
-double tempsSpace;
+long startSpace;
+long tempsSpace;
 
 //declaration des attributs
 public  BufferedImage image;
@@ -28,21 +28,27 @@ public double z;
 public double xinit;
 public double zinit;
 public Timer t1;
-public double vo;
+public int vo;
 public double l;
 public double L;	
 final double g=9.81;
 int i=0;
-canon moncanon;	
+int j =0;
+canon moncanon;
+boolean b;
+	
 
 				
 
 //constructeur
 public balle(canon moncanon){
 	
+	
+	
 	//erreur systematique due a l'image : alpha est l'angle d'inclinaison reel
 	this.moncanon=moncanon;
-	alpha=moncanon.alpha-0.2*moncanon.alpha;
+	alpha=moncanon.alpha-0.3*moncanon.alpha;
+	b=true;
 	
 	//attributs largeur et longueur
 	l=moncanon.image2.getWidth()*0.5*0.01;
@@ -53,7 +59,7 @@ public balle(canon moncanon){
 	z=(4.50-L*Math.sin(Math.toRadians(alpha)))*Math.pow(10,2);
 	
 	// v0 : entree  clavier entre 4 et 15
-	vo=13; 
+	vo=5;
 	
 	//ajout du timer qui va venir declencher notre actionPerformed 
 	t1 = new Timer(1,this);								
@@ -79,20 +85,27 @@ public balle(canon moncanon){
 
 //deplacement de la balle
 public void keyPressed(KeyEvent e){
-    //System.out.println("Pressed");
+    System.out.println("Pressed");
+    char carac = e.getKeyChar();
+	i = (int)(carac);
+	if (i==32 && b==true){
     startSpace=System.currentTimeMillis();
+    i=0;
+    b=false;
+}
     
     
     }
 
 public void keyReleased(KeyEvent e){
-    this.setVisible(true);
+    
 	System.out.println("Released");
 	char carac = e.getKeyChar();
-	i = (int)(carac);
-    if (i==32){
-    tempsSpace=System.currentTimeMillis()-startSpace;
-	repaint();	
+	j = (int)(carac);
+    if (j==32 && b==false){
+		this.setVisible(true);
+		tempsSpace=System.currentTimeMillis()-startSpace;
+		repaint();	
 	
 	if(!t1.isRunning()) {
 		t1.start();
@@ -101,6 +114,9 @@ public void keyReleased(KeyEvent e){
 		startTime=System.currentTimeMillis();
 		}
 	repaint();
+	i=0;
+	b=true;
+	
 }
 			
 }
@@ -109,8 +125,26 @@ public void keyTyped(KeyEvent e){System.out.println("Typed");}
 
 public void actionPerformed(ActionEvent e){
 	//debug
-	System.out.println(x+" "+z);
-    vo=0.08*tempsSpace;
+	//System.out.println(x+" "+z);
+    if(tempsSpace<200){
+		vo=5;
+	}else if(tempsSpace>=200 && tempsSpace<400){
+		vo=7;
+	}else if(tempsSpace>=400 && tempsSpace<800){
+		vo=9;
+	}else if(tempsSpace>=800 && tempsSpace<1000){
+		vo=11;
+	}else if(tempsSpace>=1000 && tempsSpace<1200){
+		vo=13;
+	}else if(tempsSpace>=1200 && tempsSpace<1400){
+		vo=13;
+	}else {
+		vo=15;
+	}
+	
+	System.out.println("voici le vo:"+vo);
+	System.out.println("voici le tempsspace: "+tempsSpace);
+		
 	//
 	elapsedTime = (System.currentTimeMillis() - startTime)*0.001;//temps ecoulé en secondes
 	   alpha=moncanon.alpha-0.5*moncanon.alpha;//erreur systematique
