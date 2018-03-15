@@ -72,54 +72,21 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		
 	}
 	
-//Bouger le canon		
-		//modifier l'angle du canon : entree W et S
+
 		public void keyPressed(KeyEvent e){
-	/*	char carac = e.getKeyChar();
-		i = (int)(carac);
-		if(i==119){
-			conteneur.delta_angle(10);
-			i=0;
-		
-		}else if(i==115){
-			conteneur.delta_angle(-10);
-			i=0;
-			
-			
-	     }
-	     
-	     
-	     repaint();
-	     */
+	
 		}
 		
-	public void actionPerformed(ActionEvent e){
+		public void actionPerformed(ActionEvent e){
 		repaint();
 		
 		}
 		
-		
-		
-		
-
-		
-	
-//lancer la balle
 		public void keyTyped(KeyEvent e){}
-			/*char car = e.getKeyChar()
-			if((int)(car) == 64){
-				//long t1=System.currentTimeMillis();
-			}
-			 */
-		
+			
 		public void keyReleased(KeyEvent e){}
 			
-			//long t2 = System.currentTimeMillis();
 			
-					
-			
-	//mise a l echelle de vo avec un coeff multiplicateur
-	
 		//methode paint
 		public void dessine(Graphics g){
 			conteneur.paint(g);
