@@ -64,6 +64,7 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		p.add(conteneurcible);
 		p.add(conteneurballe);
 		this.addKeyListener(conteneurballe);
+		this.addKeyListener(conteneur);
 		p.revalidate();
 		p.validate();
 		validate();
@@ -74,7 +75,7 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 //Bouger le canon		
 		//modifier l'angle du canon : entree W et S
 		public void keyPressed(KeyEvent e){
-		char carac = e.getKeyChar();
+	/*	char carac = e.getKeyChar();
 		i = (int)(carac);
 		if(i==119){
 			conteneur.delta_angle(10);
@@ -89,6 +90,7 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 	     
 	     
 	     repaint();
+	     */
 		}
 		
 	public void actionPerformed(ActionEvent e){

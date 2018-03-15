@@ -105,7 +105,7 @@ public void keyReleased(KeyEvent e){
     if (j==32 && b==false){
 		this.setVisible(true);
 		tempsSpace=System.currentTimeMillis()-startSpace;
-		alpha=moncanon.alpha-0.5*moncanon.alpha;//erreur systematique
+		alpha=0.5*moncanon.alpha;//erreur systematique
 		repaint();	
 	
 	if(!t1.isRunning()) {
