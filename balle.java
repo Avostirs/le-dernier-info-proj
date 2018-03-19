@@ -51,8 +51,8 @@ public balle(canon moncanon){
 	b=true;
 	
 	//attributs largeur et longueur
-	l=moncanon.image2.getWidth()*0.5*0.01;
-	L=moncanon.image2.getHeight()*0.5*0.01;
+	l=moncanon.image2.getWidth()*0.01;
+	L=moncanon.image2.getHeight()*0.01;
 	
 	//attributs position
 	x=(l*Math.cos(Math.toRadians(alpha))+0.50)*Math.pow(10,2);
@@ -166,22 +166,22 @@ public void actionPerformed(ActionEvent e){
 public void paint(Graphics g){
 	
 	AffineTransform a = AffineTransform.getTranslateInstance(x,z);
-	a.scale(0.06,0.06);
+	a.scale(0.04,0.04);
 	Graphics2D g2 = (Graphics2D) g;
 	g2.drawImage(image,a,null);
 	
 	
-	
 }
 
-public double getx(){
-	return x;
+public double get_centre_x(){
+	return x+15;
 }
 
-public double getz(){
-	return z;
+public double get_centre_z(){
+	return z+15;
 }
 }
+
 
 
 
