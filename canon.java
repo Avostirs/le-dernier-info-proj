@@ -43,11 +43,11 @@ public canon(double angle){
 public void keyPressed(KeyEvent e){
 		char carac = e.getKeyChar();
 		i = (int)(carac);
-		if(i==119){
+		if((i==119)&&(alpha<90)&&(alpha>=-60)){
 			this.delta_angle(10);
 			i=0;
 		
-		}else if(i==115){
+		}else if((i==115)&&(alpha<=90)&&(alpha>-60)){
 			this.delta_angle(-10);
 			i=0;
 			
