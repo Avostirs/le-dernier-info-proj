@@ -49,7 +49,7 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 	//les conteneurs canon et cibles font office de calque que l'on met dans le conteneur principal
 	
 		//definition de la cible
-		conteneurcible = new cible2();
+		conteneurcible = new cible2("./avion1.png");
 		conteneurcible.setLayout(null);
 		conteneurcible.setBounds(0,0,1300,600);
 		
@@ -90,14 +90,35 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 	
 		//Bouger le canon		
 		//modifier l'angle du canon : entree W et S
-		public void keyPressed(KeyEvent e){}
-	
+		public void keyPressed(KeyEvent e){
+	/*	char carac = e.getKeyChar();
+		i = (int)(carac);
+		if(i==119){
+			conteneur.delta_angle(10);
+			i=0;
 		
-	public void actionPerformed(ActionEvent e){
+		}else if(i==115){
+			conteneur.delta_angle(-10);
+			i=0;
+			
+			
+	     }
+	  */   
+	     
+	     repaint();
+		}
+	
+		public void actionPerformed(ActionEvent e){
+		System.out.println(this.touche_cible()+" touche cible");
+		
+		if(this.touche_cible()==true){
+		this.conteneurcible.setVisible(false);
+		this.conteneurballe.setVisible(false);
 		repaint();
+	}
+	repaint();
 		
 		}
-		
 		
 		
 		
@@ -129,6 +150,20 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 			conteneurfond.paint(g);		
 			}
 	
+	public boolean touche_cible(){
+		if(this.conteneurballe!= null && this.conteneurcible != null){
+	if((this.conteneurballe.get_centre_x() > this.conteneurcible.get_x_limite_gauche_de_limage()) &&
+			 (this.conteneurballe.get_centre_x() < this.conteneurcible.get_x_limite_droite_de_limage())&&
+			( this.conteneurballe.get_centre_z() > this.conteneurcible.get_z_limite_haut_de_limage() )&&
+			 (this.conteneurballe.get_centre_z() < this.conteneurcible.get_z_limite_basse_de_limage())){
+			 
+			return true; 
+			}else
+			{return false;}
+		}
+	
+	return false;
+}
 	
 	
 	
