@@ -1,7 +1,15 @@
+import java.awt.Color;
+import java.awt.Graphics2D;					//ici on importe la classe Graphics2D afin d'utiliser la methode rotate pour faire tourner
+import java.awt.Graphics;					//notre canon
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import javax.swing.JPanel;
+import javax.imageio.ImageIO;
+import java.io.IOException;	
+import java.awt.geom.AffineTransform;	
 
 
 public class interfacegraphique extends JFrame implements KeyListener,ActionListener {
@@ -27,19 +35,20 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		
+		
 		//ajout du timer qui va venir declencher notre actionPerformed toutes les 5 millisecondes
 		t = new Timer(1,this);
 		t.start();													
 		
 		addKeyListener(this);
+
 		
 		
 		
 		
-		
-	//les conteneurs canon et cibles font office de calque que l'on met dur me conteneur principal
+	//les conteneurs canon et cibles font office de calque que l'on met dans le conteneur principal
 	
-		// definition de la cible
+		//definition de la cible
 		conteneurcible = new cible2();
 		conteneurcible.setLayout(null);
 		conteneurcible.setBounds(0,0,1300,600);
@@ -57,20 +66,20 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		//ajout de l'image de fond
 		conteneurfond = new fond();
 		conteneurfond.setLayout(null);
-		conteneurfond.setBounds(0,0,1300,700); 
+		conteneurfond.setBounds(0,0,1300,600); 
 		
+	
 		//definition du conteneur principal
+
 		p = new JPanel();
 		p.setLayout(null);
 		this.setContentPane(p);
 		p.setBounds(100,100,this.getWidth(),this.getHeight());
-		p.setBackground(Color.yellow);
 		p.add(conteneur);
 		p.add(conteneurcible);
-		p.add(conteneurballe);
+		p.add(conteneurballe); 
 		p.add(conteneurfond); 
 		this.addKeyListener(conteneurballe);
-		this.addKeyListener(conteneur);
 		p.revalidate();
 		p.validate();
 		validate();
@@ -78,22 +87,55 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		
 	}
 	
-
+		//Bouger le canon		
+		//modifier l'angle du canon : entree W et S
 		public void keyPressed(KeyEvent e){
-	
+		char carac = e.getKeyChar();
+		i = (int)(carac);
+		if(i==119){
+			conteneur.delta_angle(10);
+			i=0;
+		
+		}else if(i==115){
+			conteneur.delta_angle(-10);
+			i=0;
+			
+			
+	     }
+	     
+	     
+	     repaint();
 		}
 		
-		public void actionPerformed(ActionEvent e){
+	public void actionPerformed(ActionEvent e){
 		repaint();
 		
 		}
 		
+		
+		
+		
+
+		
+	
+//lancer la balle
 		public void keyTyped(KeyEvent e){}
-			
+			/*char car = e.getKeyChar()
+			if((int)(car) == 64){
+				//long t1=System.currentTimeMillis();
+			}
+			 */
+		
 		public void keyReleased(KeyEvent e){}
 			
+			//long t2 = System.currentTimeMillis();
 			
+					
+			
+	//mise a l echelle de vo avec un coeff multiplicateur
+	
 		//methode paint
+
 		public void dessine(Graphics g){
 			conteneur.paint(g);
 			conteneurcible.paint(g);
