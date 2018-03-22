@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;					//ici on importe la classe Graphics2D afin d'utiliser la methode rotate pour faire tourner
 import java.awt.Graphics;					//notre canon
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.Image;
@@ -10,6 +11,7 @@ import javax.swing.JPanel;
 import javax.imageio.ImageIO;
 import java.io.IOException;	
 import java.awt.geom.AffineTransform;	
+import java.util.*;
 
 
 public class interfacegraphique extends JFrame implements KeyListener,ActionListener {
@@ -19,13 +21,17 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		private int i;
 		public JPanel p;
 		public canon conteneur;
-		public cible2 conteneurcible;
+	//	public cible2 conteneurcible;
 		public balle conteneurballe;
 		public fond conteneurfond;
+		ArrayList<cible2> collectioncibles;
+		public long starttime;
+		public long temps;
 	
 	public interfacegraphique(){
 		
 		i=0;
+		
 		
 		//definition de la fenetre
 		this.setTitle(" A vos Tirs!");
@@ -41,17 +47,16 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		t.start();													
 		
 		addKeyListener(this);
-
 		
-		
-		
+		collectioncibles = new ArrayList<cible2>();
+		this.ajoutercible(200,1300);
+		this.ajoutercible(100,1500);
+		this.ajoutercible(300,1800);
 		
 	//les conteneurs canon et cibles font office de calque que l'on met dans le conteneur principal
 	
 		//definition de la cible
-		conteneurcible = new cible2("./avion1.png");
-		conteneurcible.setLayout(null);
-		conteneurcible.setBounds(0,0,1300,600);
+		
 		
 		//definition du canon
 		conteneur = new canon(40);
@@ -76,7 +81,12 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		this.setContentPane(p);
 		p.setBounds(100,100,this.getWidth(),this.getHeight());
 		p.add(conteneur);
-		p.add(conteneurcible);
+		for(cible2 conteneurcible: collectioncibles){
+			
+			conteneurcible.setLayout(null);
+			conteneurcible.setBounds(0,0,1300,600);
+			p.add(conteneurcible);
+	}
 		p.add(conteneurballe); 
 		p.add(conteneurfond); 
 		this.addKeyListener(conteneurballe);
@@ -86,35 +96,29 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		validate();
 		repaint();	
 		
+		starttime = System.currentTimeMillis();
+		
+		
 	}
 	
 		//Bouger le canon		
 		//modifier l'angle du canon : entree W et S
-		public void keyPressed(KeyEvent e){
-	/*	char carac = e.getKeyChar();
-		i = (int)(carac);
-		if(i==119){
-			conteneur.delta_angle(10);
-			i=0;
-		
-		}else if(i==115){
-			conteneur.delta_angle(-10);
-			i=0;
-			
-			
-	     }
-	  */   
+		public void keyPressed(KeyEvent e){ 
 	     
 	     repaint();
 		}
 	
 		public void actionPerformed(ActionEvent e){
-		System.out.println(this.touche_cible()+" touche cible");
+			
+		for(cible2 conteneurcible : collectioncibles){	
+			System.out.println(this.touche_cible(conteneurcible)+" touche cible");
 		
-		if(this.touche_cible()==true){
-		this.conteneurcible.setVisible(false);
-		this.conteneurballe.setVisible(false);
+		if(this.touche_cible(conteneurcible)==true){
+			conteneurcible.setVisible(false);
+			this.conteneurballe.setVisible(false);
+		
 		repaint();
+	}
 	}
 	repaint();
 		
@@ -122,40 +126,36 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		
 		
 		
-
-		
-	
-//lancer la balle
 		public void keyTyped(KeyEvent e){}
-			/*char car = e.getKeyChar()
-			if((int)(car) == 64){
-				//long t1=System.currentTimeMillis();
-			}
-			 */
+			
 		
 		public void keyReleased(KeyEvent e){}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		public void ajoutercible(int hauteur, int debut_x){
+			collectioncibles.add(new cible2("./avion1.png",hauteur,debut_x));
+		}
 			
-			//long t2 = System.currentTimeMillis();
-			
-					
-			
-	//mise a l echelle de vo avec un coeff multiplicateur
-	
-		//methode paint
 
-		public void dessine(Graphics g){
-			conteneur.paint(g);
-			conteneurcible.paint(g);
-			conteneurballe.paint(g);
-			conteneurfond.paint(g);		
-			}
 	
-	public boolean touche_cible(){
-		if(this.conteneurballe!= null && this.conteneurcible != null){
-	if((this.conteneurballe.get_centre_x() > this.conteneurcible.get_x_limite_gauche_de_limage()) &&
-			 (this.conteneurballe.get_centre_x() < this.conteneurcible.get_x_limite_droite_de_limage())&&
-			( this.conteneurballe.get_centre_z() > this.conteneurcible.get_z_limite_haut_de_limage() )&&
-			 (this.conteneurballe.get_centre_z() < this.conteneurcible.get_z_limite_basse_de_limage())){
+	
+	public boolean touche_cible(cible2 conteneurcible){
+		
+	
+		if(this.conteneurballe!= null && conteneurcible != null){
+	if((this.conteneurballe.get_centre_x() > conteneurcible.get_x_limite_gauche_de_limage()) &&
+			 (this.conteneurballe.get_centre_x() < conteneurcible.get_x_limite_droite_de_limage())&&
+			( this.conteneurballe.get_centre_z() > conteneurcible.get_z_limite_haut_de_limage() )&&
+			 (this.conteneurballe.get_centre_z() < conteneurcible.get_z_limite_basse_de_limage())){
 			 
 			return true; 
 			}else
@@ -164,10 +164,14 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 	
 	return false;
 }
-	
-	
-	
+
+
+
 }
+	
+	
+	
+
 	
 
 

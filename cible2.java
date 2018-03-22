@@ -21,14 +21,18 @@ public Timer t2;
 public boolean b;							//une classe qui permet le maniement de l'image plus facilement
 public double x;
 public String chemin_de_limage;															//comme l'utilisation d'un drawImage, ou l'utilisation de la methode getGraphics()
+public int k;							
+private long startS;							
 															//qui renvoie le Graphics2D de l'image par exemple.
-public cible2(String chemin_image){
-	z=200;
+public cible2(String chemin_image, int z1,int x1){
+	z=z1;
 	b=true;
 	t2 = new Timer(1,this);								//ajout du timer qui va venir declencher notre actionPerformed 
 	t2.start();
-	x =1300;
+	x =x1;
 	chemin_de_limage=chemin_image;
+	k=4000;
+	startS = 0;
 			
 	try{
 		
@@ -48,14 +52,28 @@ public void actionPerformed(ActionEvent e){
 //	if(x<1300 && x>0){
 	x--;
 
+	startS=startS+1;
 	
+	if(x==-100){
+		x=k;
+	this.setVisible(true);
+}
+
+
+	if(this.startS>1000 && this.startS<5000){
+		k=3000;
+	}
+	if(this.startS>5000 && this.startS<10000){
+		k=1400;
+	}
+
 	
 	/*
-	if(x==500){
+	if(x==0){
 		if(b==true){
 			b=false;
 		}
-	}else if(z==50){
+	}else if(x==50){
 		if(b==false){
 			b=true;
 		}
