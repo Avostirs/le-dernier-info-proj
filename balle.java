@@ -158,8 +158,8 @@ public void actionPerformed(ActionEvent e){
 			
 }
 
-//dessin de la balle
-public void paint(Graphics g){
+	//dessin de la balle
+	public void paint(Graphics g){
 	
 	AffineTransform a = AffineTransform.getTranslateInstance(x,z);
 	a.scale(0.04,0.04);
@@ -329,6 +329,7 @@ public void paint(Graphics g){
 			g.setColor(Color.red);
 			g.fillRect(227,614,28,28);
 		}
+		repaint();
 	}
 	
 	
