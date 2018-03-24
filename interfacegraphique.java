@@ -27,6 +27,8 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		ArrayList<cible2> collectioncibles;
 		public long starttime;
 		public long temps;
+		int decompte=18000;
+		FinDuJeu fin;
 	
 	public interfacegraphique(){
 		
@@ -39,11 +41,18 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		this.setSize(1300,700);
 		this.setLocation(30,30);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
+		//this.setVisible(true);
 		
+		//creationfindujeu
+		fin=new FinDuJeu();
+		fin.setVisible(false);
+		revalidate();
+		validate();
+		
+		//fin.setVisible(false);
 		
 		//ajout du timer qui va venir declencher notre actionPerformed toutes les 5 millisecondes
-		t = new Timer(1,this);
+		t = new Timer(5,this);
 		t.start();													
 		
 		addKeyListener(this);
@@ -101,8 +110,6 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		
 	}
 	
-		//Bouger le canon		
-		//modifier l'angle du canon : entree W et S
 		public void keyPressed(KeyEvent e){ 
 	     
 	     repaint();
@@ -120,7 +127,18 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		repaint();
 	}
 	}
+	//Affichage du decompte
+	if(this.isVisible()){
+	this.setTitle(((decompte)*5/1000)+"       A vos Tirs!");
 	repaint();
+	decompte--;
+	if((decompte==0)){
+		this.setVisible(false);
+		fin.setVisible(true);
+		
+	}
+	}
+	
 		
 		}
 		
