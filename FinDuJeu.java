@@ -9,21 +9,24 @@ public class FinDuJeu extends JFrame{
 	protected JButton monbouton;
 	protected JLabel texte;
 	protected JLabel texte2;
+	private int p;
 
 		
-	public FinDuJeu(){
+	public FinDuJeu(int k){
 		setSize(800,530);
 		setLocation(300,100);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(false);
 		setTitle("fin");
+		this.p=k;
+	
 		
 		   
 		
 		    
 		   
 		    //zone de texte 
-			texte=new JLabel("Nombres de tirs : ");
+			texte=new JLabel("Nombres de tirs : "+this.p+" !!");
 			texte.setBounds(100,50,600,310);
 			texte.setForeground(new Color(255,255,255));
 			Font font=new Font("Stencil", Font.BOLD, 25);
@@ -59,5 +62,14 @@ public class FinDuJeu extends JFrame{
 		validate();
 		
 }	
+
+public void setp(int k){
+	this.p = k;
+	
+}
+public int getp(){
+	return this.p;
+}
+
 }
 	

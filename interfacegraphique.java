@@ -29,6 +29,7 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		public long temps;
 		int decompte=18000;
 		FinDuJeu fin;
+		public int k=0;
 	
 	public interfacegraphique(){
 		
@@ -44,10 +45,6 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		//this.setVisible(true);
 		
 		//creationfindujeu
-		fin=new FinDuJeu();
-		fin.setVisible(false);
-		revalidate();
-		validate();
 		
 		//fin.setVisible(false);
 		
@@ -70,17 +67,17 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		//definition du canon
 		conteneur = new canon(40);
 		conteneur.setLayout(null);
-		conteneur.setBounds(0,0,1300,700);
+		conteneur.setBounds(0,0,1300,600);
 		
 		//definition de la balle
 		conteneurballe=new balle(conteneur);
 		conteneurballe.setLayout(null);
-		conteneurballe.setBounds(0,0,1300,700);
+		conteneurballe.setBounds(0,0,1300,600);
 		
 		//ajout de l'image de fond
 		conteneurfond = new fond();
 		conteneurfond.setLayout(null);
-		conteneurfond.setBounds(0,0,1300,700); 
+		conteneurfond.setBounds(0,0,1300,600); 
 		
 	
 		//definition du conteneur principal
@@ -118,12 +115,15 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		public void actionPerformed(ActionEvent e){
 			
 		for(cible2 conteneurcible : collectioncibles){	
-			System.out.println(this.touche_cible(conteneurcible)+" touche cible");
+			
 		
-		if(this.touche_cible(conteneurcible)==true){
+		if(this.touche_cible(conteneurcible)==true && this.conteneurballe.getboolean_s()== false ){
+			
 			conteneurcible.setVisible(false);
 			this.conteneurballe.setVisible(false);
-		
+			this.conteneurballe.setboolean_s(true);
+			k=k+1;
+		System.out.println(k+" voici le k");
 		repaint();
 	}
 	}
@@ -131,8 +131,13 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 	if(this.isVisible()){
 	this.setTitle(((decompte)*5/1000)+"       A vos Tirs!");
 	repaint();
-	decompte--;
-	if((decompte==0)){
+	decompte = decompte -30;
+	if((decompte==0) ){
+		fin=new FinDuJeu(k);
+		//fin.setp(k);
+	//	fin.setVisible(false);
+		revalidate();
+		validate();
 		this.setVisible(false);
 		fin.setVisible(true);
 		
@@ -174,7 +179,7 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 			 (this.conteneurballe.get_centre_x() < conteneurcible.get_x_limite_droite_de_limage())&&
 			( this.conteneurballe.get_centre_z() > conteneurcible.get_z_limite_haut_de_limage() )&&
 			 (this.conteneurballe.get_centre_z() < conteneurcible.get_z_limite_basse_de_limage())){
-			 
+		
 			return true; 
 			}else
 			{return false;}

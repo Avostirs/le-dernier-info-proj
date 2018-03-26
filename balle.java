@@ -15,28 +15,29 @@ import java.awt.geom.AffineTransform;
 public class balle extends JPanel implements ActionListener,KeyListener {	
 		
 //mesure du temps pour les equations
-private double startTime;
-private double elapsedTime = 0;
-private long startSpace;
-private long tempsSpace;
+double startTime;
+double elapsedTime = 0;
+long startSpace;
+long tempsSpace;
 
 
 //declaration des attributs
-private  BufferedImage image;
-private double alpha;
-private double x ;
-private double z;
-private double xinit;
-private double zinit;
-private Timer t1;
-private int vo;
-private double l;
-private double L;	
+public  BufferedImage image;
+public double alpha;
+public double x ;
+public double z;
+public double xinit;
+public double zinit;
+public Timer t1;
+public int vo;
+public double l;
+public double L;	
 final double g=9.81;
-private int i=0;
-private int j =0;
+int i=0;
+int j =0;
 canon moncanon;
-private boolean b;
+boolean b;
+private boolean s;
 	
 
 				
@@ -44,11 +45,13 @@ private boolean b;
 //constructeur
 public balle(canon moncanon){
 	
+	s=true;
+	
 	
 	
 	//erreur systematique due a l'image : alpha est l'angle d'inclinaison reel
 	this.moncanon=moncanon;
-	alpha=moncanon.getangle()-0.3*moncanon.getangle();
+	alpha=moncanon.alpha-0.3*moncanon.alpha;
 	b=true;
 	
 	//attributs largeur et longueur
@@ -86,7 +89,7 @@ public balle(canon moncanon){
 
 //deplacement de la balle
 public void keyPressed(KeyEvent e){
-    System.out.println("Pressed");
+    
     char carac = e.getKeyChar();
 	i = (int)(carac);
 	if (i==32 && b==true){
@@ -100,13 +103,13 @@ public void keyPressed(KeyEvent e){
 
 public void keyReleased(KeyEvent e){
     
-	System.out.println("Released");
+	
 	char carac = e.getKeyChar();
 	j = (int)(carac);
     if (j==32 && b==false){
 		this.setVisible(true);
 		tempsSpace=System.currentTimeMillis()-startSpace;
-		alpha=0.5*moncanon.getangle();//erreur systematique
+		alpha=0.5*moncanon.alpha;//erreur systematique
 		repaint();	
 	
 	if(!t1.isRunning()) {
@@ -118,12 +121,13 @@ public void keyReleased(KeyEvent e){
 	repaint();
 	i=0;
 	b=true;
+	this.s=false;
 	
 }
 			
 }
 
-public void keyTyped(KeyEvent e){System.out.println("Typed");}
+public void keyTyped(KeyEvent e){}
 
 public void actionPerformed(ActionEvent e){
 	//debug
@@ -144,8 +148,6 @@ public void actionPerformed(ActionEvent e){
 		vo=14;
 	}
 	
-	System.out.println("voici le vo:"+vo);
-	System.out.println("voici le tempsspace: "+tempsSpace);
 		
 	//
 	elapsedTime = (System.currentTimeMillis() - startTime)*0.001;//temps ecoulé en secondes
@@ -341,6 +343,16 @@ public double get_centre_x(){
 public double get_centre_z(){
 	return z+15;
 }
+public void setboolean_s(boolean f){
+	s=f;
+}
+public boolean getboolean_s(){
+	return s;
+}																																																		
+	
+
+
+
 }
 
 
