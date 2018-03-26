@@ -15,26 +15,26 @@ import java.awt.geom.AffineTransform;
 public class balle extends JPanel implements ActionListener,KeyListener {	
 		
 //mesure du temps pour les equations
-double startTime;
-double elapsedTime = 0;
-long startSpace;
-long tempsSpace;
+private double startTime;
+private double elapsedTime = 0;
+private long startSpace;
+private long tempsSpace;
 
 
 //declaration des attributs
-public  BufferedImage image;
-public double alpha;
-public double x ;
-public double z;
-public double xinit;
-public double zinit;
-public Timer t1;
-public int vo;
-public double l;
-public double L;	
+private  BufferedImage image;
+private double alpha;
+private double x ;
+private double z;
+private double xinit;
+private double zinit;
+private Timer t1;
+private int vo;
+private double l;
+private double L;	
 final double g=9.81;
-int i=0;
-int j =0;
+private int i=0;
+private int j =0;
 canon moncanon;
 boolean b;
 private boolean s;
@@ -331,6 +331,7 @@ public void actionPerformed(ActionEvent e){
 			g.setColor(Color.red);
 			g.fillRect(227,614,28,28);
 		}
+		Toolkit.getDefaultToolkit().sync();
 		repaint();
 	}
 	

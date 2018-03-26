@@ -14,6 +14,7 @@ public class fond extends JPanel {
 
 	public void paint (Graphics g) {
 		g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this);
+		Toolkit.getDefaultToolkit().sync();
 	}
 	
 }
