@@ -15,13 +15,13 @@ import java.awt.geom.AffineTransform;
 public class cible2 extends JPanel implements ActionListener  {				//un JPanel comme un autre
 
 //public  BufferedImage image;
-public  BufferedImage image2;
-public double z ;
-public Timer t2;
-public boolean b;							//une classe qui permet le maniement de l'image plus facilement
-public double x;
-public String chemin_de_limage;															//comme l'utilisation d'un drawImage, ou l'utilisation de la methode getGraphics()
-public int k;							
+private  BufferedImage image2;
+private double z ;
+private Timer t2;
+private boolean b;							//une classe qui permet le maniement de l'image plus facilement
+private double x;
+private String chemin_de_limage;															//comme l'utilisation d'un drawImage, ou l'utilisation de la methode getGraphics()
+private int k;							
 private long startS;							
 															//qui renvoie le Graphics2D de l'image par exemple.
 public cible2(String chemin_image, int z1,int x1){

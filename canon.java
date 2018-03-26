@@ -15,7 +15,7 @@ import java.awt.geom.AffineTransform;
 public class canon extends JPanel implements KeyListener,ActionListener {	
 
 public  BufferedImage image2;
-public double alpha;            //une classe qui permet le maniement de l'image plus facilement
+private double alpha;            //une classe qui permet le maniement de l'image plus facilement
 															//comme l'utilisation d'un drawImage, ou l'utilisation de la methode getGraphics()
 															//qui renvoie le Graphics2D de l'image par exemple.
 private int i;

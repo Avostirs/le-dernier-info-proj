@@ -15,28 +15,28 @@ import java.awt.geom.AffineTransform;
 public class balle extends JPanel implements ActionListener,KeyListener {	
 		
 //mesure du temps pour les equations
-double startTime;
-double elapsedTime = 0;
-long startSpace;
-long tempsSpace;
+private double startTime;
+private double elapsedTime = 0;
+private long startSpace;
+private long tempsSpace;
 
 
 //declaration des attributs
-public  BufferedImage image;
-public double alpha;
-public double x ;
-public double z;
-public double xinit;
-public double zinit;
-public Timer t1;
-public int vo;
-public double l;
-public double L;	
+private  BufferedImage image;
+private double alpha;
+private double x ;
+private double z;
+private double xinit;
+private double zinit;
+private Timer t1;
+private int vo;
+private double l;
+private double L;	
 final double g=9.81;
-int i=0;
-int j =0;
+private int i=0;
+private int j =0;
 canon moncanon;
-boolean b;
+private boolean b;
 	
 
 				
@@ -48,7 +48,7 @@ public balle(canon moncanon){
 	
 	//erreur systematique due a l'image : alpha est l'angle d'inclinaison reel
 	this.moncanon=moncanon;
-	alpha=moncanon.alpha-0.3*moncanon.alpha;
+	alpha=moncanon.getangle()-0.3*moncanon.getangle();
 	b=true;
 	
 	//attributs largeur et longueur
@@ -106,7 +106,7 @@ public void keyReleased(KeyEvent e){
     if (j==32 && b==false){
 		this.setVisible(true);
 		tempsSpace=System.currentTimeMillis()-startSpace;
-		alpha=0.5*moncanon.alpha;//erreur systematique
+		alpha=0.5*moncanon.getangle();//erreur systematique
 		repaint();	
 	
 	if(!t1.isRunning()) {
@@ -329,13 +329,6 @@ public void actionPerformed(ActionEvent e){
 			g.setColor(Color.red);
 			g.fillRect(227,614,28,28);
 		}
-		
-		//Affichage du titre
-		Font font = new Font("Courier", Font.BOLD, 20);
-		g.setFont(font);
-		g.setColor(Color.green);          
-		g.drawString("Puissance", 80, 588); 
-		
 		repaint();
 	}
 	
