@@ -51,7 +51,7 @@ public balle(canon moncanon){
 	
 	//erreur systematique due a l'image : alpha est l'angle d'inclinaison reel
 	this.moncanon=moncanon;
-	alpha=moncanon.alpha-0.3*moncanon.alpha;
+	alpha=moncanon.getangle()-0.3*moncanon.getangle();
 	b=true;
 	
 	//attributs largeur et longueur
@@ -109,7 +109,7 @@ public void keyReleased(KeyEvent e){
     if (j==32 && b==false){
 		this.setVisible(true);
 		tempsSpace=System.currentTimeMillis()-startSpace;
-		alpha=0.5*moncanon.alpha;//erreur systematique
+		alpha=0.5*moncanon.getangle();//erreur systematique
 		repaint();	
 	
 	if(!t1.isRunning()) {

@@ -8,8 +8,8 @@ public class afficheur_interface{
 	
 
 public static void main(String[] args){
-			interfacegraphique a = new interfacegraphique();
-			//regles mesregles= new regles();
+			//interfacegraphique a = new interfacegraphique();
+			regles mesregles= new regles();
 			
 			
 

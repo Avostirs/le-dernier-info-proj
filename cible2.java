@@ -106,8 +106,6 @@ public void paint(Graphics g){
 	Graphics2D g2 = (Graphics2D) g;
 	
 	g2.drawImage(image2,a,null);
-	g.setColor(Color.blue);
-	g.fillRect((int)this.get_x_limite_gauche_de_limage(),(int)this.get_z_limite_haut_de_limage(),10,10);
 	
 	
 	

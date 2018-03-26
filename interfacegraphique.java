@@ -67,17 +67,17 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		//definition du canon
 		conteneur = new canon(40);
 		conteneur.setLayout(null);
-		conteneur.setBounds(0,0,1300,600);
+		conteneur.setBounds(0,0,1300,700);
 		
 		//definition de la balle
 		conteneurballe=new balle(conteneur);
 		conteneurballe.setLayout(null);
-		conteneurballe.setBounds(0,0,1300,600);
+		conteneurballe.setBounds(0,0,1300,700);
 		
 		//ajout de l'image de fond
 		conteneurfond = new fond();
 		conteneurfond.setLayout(null);
-		conteneurfond.setBounds(0,0,1300,600); 
+		conteneurfond.setBounds(0,0,1300,700); 
 		
 	
 		//definition du conteneur principal
@@ -90,7 +90,7 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		for(cible2 conteneurcible: collectioncibles){
 			
 			conteneurcible.setLayout(null);
-			conteneurcible.setBounds(0,0,1300,600);
+			conteneurcible.setBounds(0,0,1300,700);
 			p.add(conteneurcible);
 	}
 		p.add(conteneurballe); 
