@@ -329,6 +329,13 @@ public void actionPerformed(ActionEvent e){
 			g.setColor(Color.red);
 			g.fillRect(227,614,28,28);
 		}
+		
+		//Affichage du titre
+		Font font = new Font("Courier", Font.BOLD, 20);
+		g.setFont(font);
+		g.setColor(Color.green);          
+		g.drawString("Puissance", 80, 588); 
+		
 		repaint();
 	}
 	
