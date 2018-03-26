@@ -131,7 +131,7 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 	if(this.isVisible()){
 	this.setTitle(((decompte)*5/1000)+"       A vos Tirs!");
 	repaint();
-	decompte = decompte -30;
+	decompte = decompte -1;
 	if((decompte==0) ){
 		fin=new FinDuJeu(k);
 		//fin.setp(k);
