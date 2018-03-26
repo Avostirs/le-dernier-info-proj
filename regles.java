@@ -30,7 +30,7 @@ public class regles extends JFrame implements ActionListener{
 		    //ajout ecouteur
 		    monbouton.addActionListener(this);
 		    //zone de texte 
-			texte=new JLabel("<html>Bienvenue ! Pour jouer, il vous suffit de regler l'angle de tir avec les touches du clavier W et S puis <br> d'appuyer sur la touche espace quelques secondes avec la duree de votre choix. Cela chargera la puissance de lancer de la balle. Vous avez 1m30s pour tirer le plus de fois sur le bonhomme. Attention, celui ci se deplace !! Etes vous prets ? A Vos Tirs...</html>");
+			texte=new JLabel("<html>Bienvenue ! Pour jouer, il vous suffit de regler l'angle de tir avec les touches du clavier W et S puis <br> d'appuyer sur la touche espace quelques secondes avec la duree de votre choix. Cela chargera la puissance de lancer de la balle. Vous avez 1m30s pour tirer le plus de fois sur les avions. Attention, ceux-ci se deplacent !! Etes vous prets ? A Vos Tirs...</html>");
 			texte.setBounds(100,50,600,310);
 			texte.setForeground(new Color(255,255,255));
 			Font font=new Font("Stencil", Font.BOLD, 25);
