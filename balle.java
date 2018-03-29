@@ -55,8 +55,8 @@ public balle(canon moncanon){
 	b=true;
 	
 	//attributs largeur et longueur
-	l=moncanon.image2.getWidth()*0.5*0.01;
-	L=moncanon.image2.getHeight()*0.5*0.01;
+	l=moncanon.getimage().getWidth()*0.5*0.01;
+	L=moncanon.getimage().getHeight()*0.5*0.01;
 	
 	//attributs position
 	x=(l*Math.cos(Math.toRadians(alpha))+0.50)*Math.pow(10,2);
