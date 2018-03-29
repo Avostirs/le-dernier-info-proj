@@ -20,7 +20,7 @@ public class regles extends JFrame implements ActionListener{
 		
 		   
 		
-		//gestion du conteneur bleu
+		//gestion des objets de la fenetre
 		    
 		    //bouton
 		    monbouton=new JButton(">Jouer");
@@ -65,10 +65,15 @@ public class regles extends JFrame implements ActionListener{
 		//creation de l'interface
 		dessin=new interfacegraphique();
 		dessin.setVisible(false);
-		revalidate();
 		validate();
 		
 }	
+/**
+         * Permet de rendre visible la fentre de jeu quand on appuie sur play.
+         * La fenetre de regles est ensuite invisible.
+         * @param e l'enevement qui se genere par l'appui du bouton
+         */           
+
 public void actionPerformed(ActionEvent e){
 	if (e.getSource() == monbouton){
 		dessin.setVisible(true);
