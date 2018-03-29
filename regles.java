@@ -6,10 +6,10 @@ import java.awt.Color;
 
 public class regles extends JFrame implements ActionListener{
 	
-	protected JButton monbouton;
-	protected JLabel texte;
-	protected JLabel texte2;
-	protected interfacegraphique dessin;
+	private JButton monbouton;
+	private JLabel texte;
+	private JLabel texte2;
+	private interfacegraphique dessin;
 
 		
 	public regles(){
