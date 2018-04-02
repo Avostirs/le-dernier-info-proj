@@ -10,38 +10,27 @@ import javax.swing.JPanel;
 import javax.imageio.ImageIO;
 import java.io.IOException;	
 import java.awt.geom.AffineTransform;
+import java.util.TimerTask;
+import java.util.Timer;
 
 
 
 
-
-
-public class boom extends JPanel{//implements ActionListener{
+public class boom extends JLabel{
 	
 	public int x;
 	public int z;
 	public ImageIcon[] tabimages;
-//	public Timer t;
+	
 	public int j;
-	public int s;
-	public ImageIcon im;
-	public JLabel l1;
-	public JLabel l2;
-	public JLabel l3;
-	public JLabel l4;
-	public JLabel l5;
-	public JLabel l6;
 	
 	
 	
 	public boom(int x,int z){
 		
-	//	JLabel logo = new JLabel(new ImageIcon("./insa_logo.png"));
-	//	logo.setBounds(190,20,140,130);
-	//	t = new Timer(1000,this);
-	
-	
-		j = 0;
+		
+		tabimages = new ImageIcon[6];
+		
 		tabimages[0]= new ImageIcon("./photosboom/boom1.png");
 		tabimages[1]= new ImageIcon("./photosboom/boom2.png");
 		tabimages[2]= new ImageIcon("./photosboom/boom3.png");
@@ -49,31 +38,33 @@ public class boom extends JPanel{//implements ActionListener{
 		tabimages[4]= new ImageIcon("./photosboom/boom5.png");
 		tabimages[5]= new ImageIcon("./photosboom/boom6.png");
 		
-		im= tabimages[j];
 		
 		this.x=x;
 		this.z=z;
-		tabimages = new ImageIcon[6];
-		this.setBounds(this.x,this.z,400,400);
-		l1 = new JLabel(tabimages[0]);
-		l2 = new JLabel(tabimages[1]);
-		l3 = new JLabel(tabimages[2]);
-		l4 = new JLabel(tabimages[3]);															
-		l5 = new JLabel(tabimages[4]);
-		l6 = new JLabel(tabimages[5]);
 		
-
+		this.setBounds(x,z,1300,700);
+		
 	
+	
+		Timer timer = new Timer();
+        
+        action_timer action_a_repeter = new action_timer(timer, this); 
+       //a  action_a_repeter va se reveiller a partir de l'instant 0 sec, toutes les 100 ms
+        timer.schedule(action_a_repeter, 0, 100);					
+		
+				
 	repaint();
 }
 
 
-
-public void addimage(int x,int z){
-	this.add(l1);
-	l1.setBounds(x,z,400,400);
-}
+public void set_imagei(int i){
 	
+	this.setIcon(tabimages[i]);
+	
+}
+
+	
+
 }
 
 	

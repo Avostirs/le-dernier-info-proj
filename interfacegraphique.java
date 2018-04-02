@@ -24,6 +24,7 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 	//	public cible2 conteneurcible;
 		public balle conteneurballe;
 		public fond conteneurfond;
+		public fond_boom conteneurfond_boom;
 		ArrayList<cible2> collectioncibles;
 		public long starttime;
 		public long temps;
@@ -34,6 +35,7 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 	public interfacegraphique(){
 		
 		i=0;
+		
 		
 		
 		//definition de la fenetre
@@ -55,29 +57,35 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		addKeyListener(this);
 		
 		collectioncibles = new ArrayList<cible2>();
-		this.ajoutercible(200,1300);
-		this.ajoutercible(100,1500);
-		this.ajoutercible(300,1800);
+		this.ajoutercible(200,3300,1);
+		this.ajoutercible(100,3500,1);
+		this.ajoutercible(300,4000,2);
 		
 	//les conteneurs canon et cibles font office de calque que l'on met dans le conteneur principal
 	
-		//definition de la cible
 		
+	
 		
 		//definition du canon
 		conteneur = new canon(40);
 		conteneur.setLayout(null);
 		conteneur.setBounds(0,0,1300,700);
 		
+			//ajout de l'image de fond
+		conteneurfond = new fond();
+		conteneurfond.setLayout(null);
+		conteneurfond.setBounds(0,0,1300,700);
+	
+		
 		//definition de la balle
 		conteneurballe=new balle(conteneur);
 		conteneurballe.setLayout(null);
 		conteneurballe.setBounds(0,0,1300,700);
 		
-		//ajout de l'image de fond
-		conteneurfond = new fond();
-		conteneurfond.setLayout(null);
-		conteneurfond.setBounds(0,0,1300,700); 
+		//ajout du conteneur de fond pour les explosions
+		conteneurfond_boom = new fond_boom();
+		conteneurfond_boom.setLayout(null);
+		
 		
 	
 		//definition du conteneur principal
@@ -85,16 +93,26 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		p = new JPanel();
 		p.setLayout(null);
 		this.setContentPane(p);
-		p.setBounds(100,100,this.getWidth(),this.getHeight());
-		p.add(conteneur);
+		p.setBounds(0,0,this.getWidth(),this.getHeight());
+		
+		
+		
+		
+		
 		for(cible2 conteneurcible: collectioncibles){
 			
 			conteneurcible.setLayout(null);
 			conteneurcible.setBounds(0,0,1300,700);
 			p.add(conteneurcible);
 	}
+		
+		p.add(conteneur);
 		p.add(conteneurballe); 
-		p.add(conteneurfond); 
+		
+		p.add(conteneurfond_boom);
+		p.add(conteneurfond);
+		
+		 
 		this.addKeyListener(conteneurballe);
 		this.addKeyListener(conteneur);
 		p.revalidate();
@@ -120,6 +138,7 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		if(this.touche_cible(conteneurcible)==true && this.conteneurballe.getboolean_s()== false ){
 			
 			conteneurcible.setVisible(false);
+			conteneurfond_boom.add_explosion(-40+conteneurcible.get_x(),-335+conteneurcible.get_z());
 			this.conteneurballe.setVisible(false);
 			this.conteneurballe.setboolean_s(true);
 			k=k+1;
@@ -164,8 +183,8 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		
 		
 		
-		public void ajoutercible(int hauteur, int debut_x){
-			collectioncibles.add(new cible2("./avion1.png",hauteur,debut_x));
+		public void ajoutercible(int hauteur, int debut_x, int delt){
+			collectioncibles.add(new cible2("./avion1.png",hauteur,debut_x,delt));
 		}
 			
 

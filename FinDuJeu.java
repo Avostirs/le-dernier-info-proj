@@ -4,14 +4,17 @@ import java.awt.event.*;
 
 import java.awt.Color;
 
-public class FinDuJeu extends JFrame{
+public class FinDuJeu extends JFrame implements ActionListener{
 	
-	private JButton monbouton;
-	private JLabel texte;
-	private JLabel texte2;
+	protected JButton unbouton;
+	protected JLabel texte;
+	protected JLabel texte2;
+	protected interfacegraphique Dessin;
 	private int p;
+	
+	
 
-	//Le constructeur prend en parametre k qui est le nombre de tirs a la fin du chrono	
+		
 	public FinDuJeu(int k){
 		setSize(800,530);
 		setLocation(300,100);
@@ -19,22 +22,29 @@ public class FinDuJeu extends JFrame{
 		setVisible(false);
 		setTitle("fin");
 		this.p=k;
-
-		//zone de texte 
-		texte=new JLabel("Nombres de tirs : "+this.p+" !!");
-		texte.setBounds(100,50,600,310);
-		texte.setForeground(new Color(255,255,255));
-		Font font=new Font("Stencil", Font.BOLD, 25);
-		texte.setFont(font);
-		//zone de texte2
-		texte2=new JLabel("A Vos Tirs !");
-		texte2.setBounds(280,25,600,40);
-		texte2.setForeground(new Color(128,128,0));
-		Font font2=new Font("Stencil", Font.BOLD, 30);
-		texte2.setFont(font2);
+	
+		
+		   
+		
+		    
+		   
+		    //zone de texte 
+			texte=new JLabel("Avions detruits : "+this.p+" !!");
+			texte.setBounds(100,50,600,310);
+			texte.setForeground(new Color(255,255,255));
+			Font font=new Font("Stencil", Font.BOLD, 25);
+			texte.setFont(font);
+			//zone de texte2
+			texte2=new JLabel("A Vos Tirs !");
+			texte2.setBounds(280,25,600,40);
+			texte2.setForeground(new Color(128,128,0));
+			Font font2=new Font("Stencil", Font.BOLD, 30);
+			texte2.setFont(font2);
+			
 			
 		    
-		      
+		    
+		    
 		//Affichage conteneur interieur
 		JPanel interieur =new JPanel();  
 		interieur.setBackground(new Color(200,173,127));
@@ -51,10 +61,41 @@ public class FinDuJeu extends JFrame{
 		bord.setLayout(null); 
 		this.setContentPane(bord); 
 		
+		// un bouton pour recommencer le jeu
+		unbouton=new JButton(">Recommencer");
+		unbouton.setBounds(550,370,150,30);
+		unbouton.setBackground(new Color(128,128,0));
+		unbouton.setForeground(new Color(0,0,0));
+		
+		//ajout de l'ecouteur
+		unbouton.addActionListener(this);
+		
+		//ajout du bouton au conteneur interieur
+		interieur.add(unbouton);
+	
+		
+		//ajout d'un interfacegraphique suite a l'appui du bouton recommencer
+		
+		Dessin=new interfacegraphique();
+		Dessin.setVisible(false);
+		revalidate();
+		validate();
+		
+		
+		revalidate();
 		validate();
 		
 }	
-//methodes set
+public void actionPerformed(ActionEvent e){
+	if (e.getSource() == unbouton){
+		Dessin.setVisible(true);
+		this.setVisible(false);
+	}
+}
+	
+
+		
+
 public void setp(int k){
 	this.p = k;
 	

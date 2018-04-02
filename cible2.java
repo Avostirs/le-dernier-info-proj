@@ -9,7 +9,9 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 import javax.imageio.ImageIO;
 import java.io.IOException;	
-import java.awt.geom.AffineTransform;	
+import java.awt.geom.AffineTransform;
+import java.util.Random;
+	
 
 
 public class cible2 extends JPanel implements ActionListener  {				//un JPanel comme un autre
@@ -22,16 +24,18 @@ private boolean b;							//une classe qui permet le maniement de l'image plus fa
 private double x;
 private String chemin_de_limage;															//comme l'utilisation d'un drawImage, ou l'utilisation de la methode getGraphics()
 private int k;							
-private long startS;							
+private long startS;
+private int delta;							
 															//qui renvoie le Graphics2D de l'image par exemple.
-public cible2(String chemin_image, int z1,int x1){
+public cible2(String chemin_image, int z1,int x1, int D){
+	this.delta= D;
 	z=z1;
 	b=true;
 	t2 = new Timer(1,this);								//ajout du timer qui va venir declencher notre actionPerformed 
 	t2.start();
 	x =x1;
 	chemin_de_limage=chemin_image;
-	k=4000;
+	k=2500;
 	startS = 0;
 			
 	try{
@@ -49,50 +53,39 @@ public cible2(String chemin_image, int z1,int x1){
 
 public void actionPerformed(ActionEvent e){
 	
-//	if(x<1300 && x>0){
-	x--;
-
-	startS=startS+1;
 	
-	if(x==-100){
+	
+
+	x= x - delta;
+	
+	//generation d'un nombre aleatoire entre 0 et le nombre passe en parametre a la methode .nextInt
+	Random r = new Random();
+    int n = r.nextInt(5);
+
+	
+	if(x<-200 && n==0){
+		this.delta=2;
 		x=k;
 	this.setVisible(true);
 }
+	else if(x<-200 && n==1){
+		this.delta = 1;
+		x=k;
+		this.setVisible(true);
+	}
 
 
-	if(this.startS>1000 && this.startS<5000){
-		k=3000;
-	}
-	if(this.startS>5000 && this.startS<10000){
-		k=1400;
-	}
 
 	
-	/*
-	if(x==0){
-		if(b==true){
-			b=false;
-		}
-	}else if(x==50){
-		if(b==false){
-			b=true;
-		}
-	}
-	if(b==true){
-		z++;
-		repaint();
-		validate();
-	}else if(b==false){
-		z--;
-		repaint();
-		validate();
-	}
-	 */
+	
+	
+	 
 	repaint();
 	revalidate();		
 	
 	
 }
+
 	
 	
 
@@ -106,14 +99,12 @@ public void paint(Graphics g){
 	Graphics2D g2 = (Graphics2D) g;
 	
 	g2.drawImage(image2,a,null);
-	Toolkit.getDefaultToolkit().sync();
-	
 	
 }
 
 
 public double get_x_limite_gauche_de_limage(){
-	return x+14;
+	return x+15;
 }
 public double get_x_limite_droite_de_limage(){
 	return x+this.image2.getWidth()-20;
@@ -122,8 +113,17 @@ public double get_z_limite_haut_de_limage(){
 	return z+30;
 }
 public double get_z_limite_basse_de_limage(){
-	return z+this.image2.getHeight()-10;
+	return z+this.image2.getHeight()-5;
 }
+
+public int get_x(){
+	return (int)this.x;
+}
+
+public int get_z(){
+	return (int)this.z;
+}
+
 
 
 }
