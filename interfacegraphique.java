@@ -24,7 +24,7 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 	//	public cible2 conteneurcible;
 		public balle conteneurballe;
 		public fond conteneurfond;
-		ArrayList<cible2> collectioncibles;
+		ArrayList<cible> collectioncibles;
 		public long starttime;
 		public long temps;
 		int decompte=18000;
@@ -54,10 +54,11 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		
 		addKeyListener(this);
 		
-		collectioncibles = new ArrayList<cible2>();
-		this.ajoutercible(200,1300);
-		this.ajoutercible(100,1500);
-		this.ajoutercible(300,1800);
+		collectioncibles = new ArrayList<cible>();
+		this.ajoutercible(200,3300,1);
+		this.ajoutercible(100,3500,1);
+		this.ajoutercible(300,4000,2);
+		
 		
 	//les conteneurs canon et cibles font office de calque que l'on met dans le conteneur principal
 	
@@ -87,7 +88,7 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		this.setContentPane(p);
 		p.setBounds(100,100,this.getWidth(),this.getHeight());
 		p.add(conteneur);
-		for(cible2 conteneurcible: collectioncibles){
+		for(cible conteneurcible: collectioncibles){
 			
 			conteneurcible.setLayout(null);
 			conteneurcible.setBounds(0,0,1300,700);
@@ -114,7 +115,7 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 	
 		public void actionPerformed(ActionEvent e){
 			
-		for(cible2 conteneurcible : collectioncibles){	
+		for(cible conteneurcible : collectioncibles){	
 			
 		
 		if(this.touche_cible(conteneurcible)==true && this.conteneurballe.getboolean_s()== false ){
@@ -160,18 +161,12 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 		
 		
 		
-		
-		
-		
-		
-		public void ajoutercible(int hauteur, int debut_x){
-			collectioncibles.add(new cible2("./avion1.png",hauteur,debut_x));
+		public void ajoutercible(int hauteur, int debut_x, int delt){
+			collectioncibles.add(new cible("./avion1.png",hauteur,debut_x,delt));
 		}
 			
-
 	
-	
-	public boolean touche_cible(cible2 conteneurcible){
+	public boolean touche_cible(cible conteneurcible){
 		
 	
 		if(this.conteneurballe!= null && conteneurcible != null){
