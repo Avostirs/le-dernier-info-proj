@@ -99,7 +99,6 @@ public class interfacegraphique extends JFrame implements KeyListener,ActionList
 				this.conteneurballe.setVisible(false);
 				this.conteneurballe.setboolean_s(true);
 				k=k+1;
-				System.out.println(k+" voici le k");
 				repaint();
 			}
 		}
