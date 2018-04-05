@@ -4,16 +4,8 @@ import java.awt.event.*;
 
 
 public class afficheur_interface{ 
-	
-	
 
-public static void main(String[] args){
-			//interfacegraphique a = new interfacegraphique();
-			regles mesregles= new regles();
-			
-			
-
-	
-	
+	public static void main(String[] args){
+		regles mesregles= new regles();
 	}
 }
