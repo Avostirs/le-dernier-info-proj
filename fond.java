@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class fond extends JPanel {
 	
-	Private Image image;
+	private Image image;
 	
 	//Constructeur:
 	public fond () { 
