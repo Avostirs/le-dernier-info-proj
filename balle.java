@@ -81,6 +81,10 @@ public balle(canon moncanon){
 
 }
 
+/**
+ * Demarre le chrono du temps d'appui
+* @param e l'enevement qui se genere par l'appui d'une touche sur le clavier. 
+*/
 public void keyPressed(KeyEvent e){
 // Déplacement de la balle
 // Démarrage du timer lorsqu'on appuie sur la barre espace du clavier
@@ -93,8 +97,11 @@ char carac = e.getKeyChar();
 	}
 }
 
+/**
+* Enregistre temps d'appui sur l'espace et recupere l'angle du canon afin d'avoir l'equation du mouvement approprie de la balle
+* @param e l'enevement qui se genere par le relachement de la touche espace de code ASCII 32
+*/  
 
-// Méthode keyReleased:
 public void keyReleased(KeyEvent e){
 	char carac = e.getKeyChar();
 	j = (int)(carac);
@@ -124,7 +131,11 @@ public void keyReleased(KeyEvent e){
 //Méthode keyTyped
 public void keyTyped(KeyEvent e){}
 
-//Méthode actionPerformed
+
+/**
+ * Redessine la balle suivant la modification de ses parametres, a chaque appel du timer
+* @param e un enevement quelconque
+*/  
 public void actionPerformed(ActionEvent e){
 	// On incrémente vo en fonction du temps d'appui sur la barre espace
 	deterv0();
@@ -140,7 +151,7 @@ public void actionPerformed(ActionEvent e){
 //Méthode paint
 public void paint(Graphics g){
 	
-	//Dessin de la balle
+	//Dessin de la balle aux coordonnees (x,z) 
 	AffineTransform a = AffineTransform.getTranslateInstance(x,z);
 	a.scale(0.04,0.04);
 	Graphics2D g2 = (Graphics2D) g;
@@ -161,12 +172,19 @@ public void paint(Graphics g){
 	
 }	
     
- 
+ /**
+  * calcul des coordonnees de la balle en fonction du temps ecoule: elapsedTime
+*/  
 public void trajectoireballe(){
     x=(vo*Math.cos(Math.toRadians(alpha))*elapsedTime+(l*Math.cos(Math.toRadians(alpha))+0.50))*Math.pow(10,2);
     z=(0.5*g*Math.pow(elapsedTime,2)-vo*(Math.sin(Math.toRadians(alpha)))*elapsedTime+(4.50-L*Math.sin(Math.toRadians(alpha))))*Math.pow(10,2);
-}  
+}
 
+  
+/**
+ * Affiche le nombre de carreaux en fonction de la vitesse vo de la balle
+* @param g ,g2 : des classes Graphics,Graphics2D  permettant de dessiner la jauge
+*/  
 public void jaugev0(Graphics g,Graphics g2){
     
 	//affichage de la jauge en fonction de vo
@@ -325,7 +343,9 @@ public void jaugev0(Graphics g,Graphics g2){
             g.fillRect(227,614,28,28);
         }
 }
-      
+      /**
+ *Determine le vo en fonction du temps d'appui sur la barre espace
+*/  
  public void deterv0(){ 
      if(tempsSpace<200 &&tempsSpace>0){
 		vo=5;
